@@ -23,13 +23,13 @@ export default function CurrentUsers() {
     return <div className="w-full flex justify-evenly items-center select-none rounded-3xl bg-faint border border-white/6 shadow-xl">
         {data ? <>
             <div className="p-6 flex items-center">
-            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_playing)).toPrecision(2) + MoneyFormat(data.total_playing).replace(/[^B|M|K]/g, "")}+ Online Users</h3>
+            <h3 className="text-xl font-semibold mb-2 text-center">{parseFloat(MoneyFormat(data.total_playing)).toPrecision(2) + MoneyFormat(data.total_playing).replace(/[^B|M|K]/g, "")}+ Online Users</h3>
         </div>
         <div className="p-6 flex items-center">
-            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_visits)).toPrecision(2) + MoneyFormat(data.total_visits).replace(/[^B|M|K]/g, "")}+ Total Unique Sessions</h3>
+            <h3 className="text-xl font-semibold mb-2 text-center">{parseFloat(MoneyFormat(data.total_visits)).toPrecision(2) + MoneyFormat(data.total_visits).replace(/[^B|M|K]/g, "")}+ Total Unique Sessions</h3>
         </div>
         </> : <div className="p-6 flex items-center">
-            <h3 className="text-xl font-semibold mb-2">Loading...</h3>
+            <h3 className="text-xl font-semibold mb-2 text-center">Loading...</h3>
         </div>}
     </div>
 }
