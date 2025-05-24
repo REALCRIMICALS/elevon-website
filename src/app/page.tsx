@@ -1,0 +1,85 @@
+import Image from "next/image";
+import Link from "next/link";
+import { use } from "react";
+
+function MoneyFormat(labelValue: string | number): string {
+  return Math.abs(Number(labelValue)) >= 1.0e+9
+    ? Math.abs(Number(labelValue)) / 1.0e+9 + "B"
+    : Math.abs(Number(labelValue)) >= 1.0e+6
+      ? Math.abs(Number(labelValue)) / 1.0e+6 + "M"
+      : Math.abs(Number(labelValue)) >= 1.0e+3
+        ? Math.abs(Number(labelValue)) / 1.0e+3 + "K"
+        : Math.abs(Number(labelValue)) + "";
+}
+
+export default function Home() {
+  const data = use((async () => {
+    const res = await fetch("http://localhost:3000/api/getstats/1160789089/4661160139/605887098/4202932581/2435789930/2151379579/1720936166/3132040251/3405618667/2150346856");
+    const data = await res.json();
+    return data as {
+      total_favorited: number,
+      total_playing: number,
+      total_visits: number
+    };
+  })())
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-[64px] row-start-2 items-center justify-center max-w-[80rem] mx-auto">
+        <div className="flex flex-col gap-[32px] items-center">
+          <div className="flex items-center gap-4">
+            <Image src={"/elevon-transparent.svg"} width={80} height={80} quality={100} alt="elevon logo" className="" />
+            <span className="text-5xl">Elevon</span>
+          </div>
+          <span className="text-2xl text-center">Elevating the next generation of Metaverse experiences</span>
+        </div>
+        <div className="w-full flex justify-evenly items-center select-none rounded-3xl bg-faint border border-white/6 shadow-xl">
+          <div className="p-6 flex items-center">
+            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_playing)).toPrecision(2) + MoneyFormat(data.total_playing).replace(/[^B|M|K]/g, "")}+ Online Users</h3>
+          </div>
+          <div className="p-6 flex items-center">
+            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_visits)).toPrecision(2) + MoneyFormat(data.total_visits).replace(/[^B|M|K]/g, "")}+ Total Unique Sessions</h3>
+          </div>
+        </div>
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <Link href={"/partners"} className="button">Partner With Us</Link>
+        </div>
+        <div className="flex flex-col w-full">
+          <div className="p-6 w-2/3 mx-auto shrink-0 mb-32">
+            <h3 className="text-3xl font-semibold mb-2">About Us</h3>
+            <p className="text-gray-300 text-xl">Founded in 2024, Elevon is a next-generation partner for online businesses, developers, and digital creators. We specialize in growing, funding, and scaling projects across the metaverse — from Roblox games to emerging digital platforms.
+
+With contributions to projects totaling over 25M+ monthly active users and a growing network of high-impact partnerships, Elevon helps turn ambitious projects into lasting brands. Whether it’s strategic funding, long-term marketing, or operational support, we give creators the tools they need to grow faster and go further. </p>
+          </div>
+          <div className="w-full flex justify-evenly items-center select-none">
+            <div className="p-6 w-1/2 shrink-0">
+              <h3 className="text-xl font-semibold mb-2">Full Project Acquisition</h3>
+              <p className="text-gray-300">We acquire digital businesses and games outright, offering fair market value and long-term support to maximize the potential of your work.</p>
+            </div>
+            <div className="w-1/2 shrink-0" />
+          </div>
+          <div className="w-full flex justify-evenly items-center select-none">
+            <div className="w-1/2 shrink-0" />
+            <div className="p-6 w-1/2 shrink-0 text-end">
+              <h3 className="text-xl font-semibold mb-2">Growth & Marketing</h3>
+              <p className="text-gray-300">Our in-house growth team builds data-driven campaigns designed to expand your community, increase monetization, and position your brand for global reach.</p>
+            </div>
+          </div>
+          <div className="w-full flex justify-evenly items-center select-none">
+            <div className="p-6 w-1/2 shrink-0">
+              <h3 className="text-xl font-semibold mb-2">Strategic Partnerships</h3>
+              <p className="text-gray-300">We work closely with developers and founders to unlock new revenue streams, scale operations, and align long-term goals with sustainable growth.</p>
+            </div>
+            <div className="w-1/2 shrink-0" />
+          </div>
+          <div className="w-full flex justify-evenly items-center select-none">
+            <div className="w-1/2 shrink-0" />
+            <div className="p-6 w-1/2 shrink-0 text-end">
+              <h3 className="text-xl font-semibold mb-2">Seamless Handover</h3>
+              <p className="text-gray-300">From negotiation to transition, our team handles everything. You stay focused on what you do best.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

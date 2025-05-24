@@ -1,0 +1,68 @@
+@keyframes animate-settings-item-indicator {
+    0% {
+        translate: -10px -50%;
+        opacity: 0;
+        height: 10px;
+    }
+    50% {
+        translate: 1px -50%;
+        opacity: 1;
+        height: 24px;
+    }
+    100% {
+        translate: 0 -50%;
+        opacity: 1;
+        height: 20px;
+    }
+}
+
+@keyframes animate-from-left {
+	0% {
+		opacity: 0;
+		transform: translateX(-20px)
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes animate-from-right {
+	0% {
+		opacity: 0;
+		transform: translateX(20px)
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes animate-from-bottom {
+	0% {
+		opacity: 0;
+		transform: translateY(20px)
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes show-modal {
+	0% {
+		opacity: 0;
+		transform: translateY(20px)
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes animate-from-top {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px)
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
