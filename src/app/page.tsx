@@ -1,27 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { use } from "react";
-
-function MoneyFormat(labelValue: string | number): string {
-  return Math.abs(Number(labelValue)) >= 1.0e+9
-    ? Math.abs(Number(labelValue)) / 1.0e+9 + "B"
-    : Math.abs(Number(labelValue)) >= 1.0e+6
-      ? Math.abs(Number(labelValue)) / 1.0e+6 + "M"
-      : Math.abs(Number(labelValue)) >= 1.0e+3
-        ? Math.abs(Number(labelValue)) / 1.0e+3 + "K"
-        : Math.abs(Number(labelValue)) + "";
-}
+import CurrentUsers from "./CurrentUsers";
 
 export default function Home() {
-  const data = use((async () => {
-    const res = await fetch("http://localhost:3000/api/getstats/1160789089/4661160139/605887098/4202932581/2435789930/2151379579/1720936166/3132040251/3405618667/2150346856");
-    const data = await res.json();
-    return data as {
-      total_favorited: number,
-      total_playing: number,
-      total_visits: number
-    };
-  })())
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[64px] row-start-2 items-center justify-center max-w-[80rem] mx-auto">
@@ -32,14 +13,7 @@ export default function Home() {
           </div>
           <span className="text-2xl text-center">Elevating the next generation of Metaverse experiences</span>
         </div>
-        <div className="w-full flex justify-evenly items-center select-none rounded-3xl bg-faint border border-white/6 shadow-xl">
-          <div className="p-6 flex items-center">
-            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_playing)).toPrecision(2) + MoneyFormat(data.total_playing).replace(/[^B|M|K]/g, "")}+ Online Users</h3>
-          </div>
-          <div className="p-6 flex items-center">
-            <h3 className="text-xl font-semibold mb-2">{parseFloat(MoneyFormat(data.total_visits)).toPrecision(2) + MoneyFormat(data.total_visits).replace(/[^B|M|K]/g, "")}+ Total Unique Sessions</h3>
-          </div>
-        </div>
+        <CurrentUsers/>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Link href={"/partners"} className="button">Partner With Us</Link>
         </div>

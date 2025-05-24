@@ -11,7 +11,7 @@ function removeDuplicates(arr: string[]): string[] {
 
 export async function GET (
     request: NextRequest,
-    { params }: { params: { universeids: string[] } }
+    { params }: { params: Promise<{ universeids: string[] }> }
 ) {
     const { universeids } = await params;
 
