@@ -24,7 +24,7 @@ export default function RootLayout({
             <span className="text-xl my-auto ml-2 select-none">Elevon</span>
           </Link>
           <div className="ml-auto my-auto mr-2 flex gap-2 items-center">
-            <Link href={"/partners"} className="button">Partner With Us</Link>
+            <Link href={"#contact"} className="button">Partner With Us</Link>
           </div>
         </nav>
         {children}
