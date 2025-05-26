@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IARRAY, IENDSTATEMENT, IEXPR, IEXPREVAL, IFUNCALL, IFUNDEF, IMEMBER, INUMBER, IOP1, IOP2, IOP3, IVAR, IVARNAME } from "./instruction";
 
 export default function evaluate(tokens, expr, values) {

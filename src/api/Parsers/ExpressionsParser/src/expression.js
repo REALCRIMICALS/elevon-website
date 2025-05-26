@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import evaluate from "./evaluate";
 import expressionToString from "./expression-to-string";
 import getSymbols from "./get-symbols";
