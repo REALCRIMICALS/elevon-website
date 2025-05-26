@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Image from 'next/image'
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
+import NotificationsLayer from "@/Components/Notifications";
 
 export const metadata: Metadata = {
   title: "Elevon Games",
@@ -18,6 +20,8 @@ export default function RootLayout({
       <body
         className="antialiased bg-gradient-to-br from-[#0a0a23] to-[#161636]"
       >
+        <Analytics/>
+        <NotificationsLayer/>
         <nav className="w-[calc(100%-1rem)] py-2 border border-t-0 rounded-xl border-white/5 bg-faint shadow-xl flex mx-2 fixed top-2 left-0 backdrop-blur-3xl">
           <Link href={"/"} className="flex items-center">
             <Image src={"/elevon.svg"} width={100} height={100} quality={100} alt="elevon logo" className="size-8 my-auto ml-2" />

@@ -11,7 +11,10 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^15.3.2",
     "@react-email/components": "^0.0.41",
+    "@types/flux": "^3.1.14",
+    "@vercel/analytics": "^1.5.0",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "flux": "^4.0.4",
     "motion": "^12.12.1",
     "next": "15.3.2",
     "react": "^19.0.0",
