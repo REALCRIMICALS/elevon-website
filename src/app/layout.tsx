@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import NotificationsLayer from "@/Components/Notifications";
 
 export const metadata: Metadata = {
-  title: "Elevon Games",
+  title: "Elevon Studios",
   description: "Elevating the next generation of Metaverse experiences",
 };
 
