@@ -1,8 +1,9 @@
-import { Tailwind, Body, Section, Row, Column, Img, Container, Html, Text } from "@react-email/components";
+import { Tailwind, Body, Section, Row, Column, Img, Container, Html, Text, Head } from "@react-email/components";
 
 export default function MessageReceivedEmail({ name }: { name: string }) {
     return <Tailwind>
         <Html>
+            <Head/>
             <Body className='m-0 antialiased bg-blue-950 dark:bg-blue-950 text-white dark:text-white [font-family:_Trebuchet_MS,Helvetica,sans-serif]'>
                 <Section className='w-[calc(100%-32px)] border border-[#ffffff0c] border-solid rounded-xl m-4 bg-gray-500/10 dark:bg-gray-500/10 items-center flex justify-center gap-2 p-3 select-none'>
                     <Row>
