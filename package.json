@@ -16,7 +16,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "flux": "^4.0.4",
     "motion": "^12.12.1",
-    "next": "15.3.2",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^4.5.1"
