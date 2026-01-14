@@ -43,7 +43,7 @@ export default function RootLayout({
         </nav>
         {children}
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-between bg-gray-950 dark:bg-gray-950 p-4">
-          <span className="text-gray-500">© 2025 Elevon. All rights reserved.</span>
+          <span className="text-gray-500">© 2026 Elevon. All rights reserved.</span>
           <div className="flex items-center gap-4">
 
           </div>
