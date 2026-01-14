@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex flex-col w-full gap-4">
           <div className="p-6 w-full lg:w-2/3 mx-auto shrink-0 mb-32">
             <h3 className="text-3xl font-semibold mb-2">About Us</h3>
-            <p className="text-gray-300 text-xl">Founded in 2024, Elevon is a next-generation partner for online businesses, developers, and digital creators. We specialize in growing, funding, and scaling projects across the metaverse — from video games to emerging digital platforms.
+            <p className="text-gray-300 text-xl">Founded in 2025, Elevon is a next-generation partner for online businesses, developers, and digital creators. We specialize in growing, funding, and scaling projects across the metaverse — from video games to emerging digital platforms.
 
               With contributions to projects totaling over 25M+ monthly active users and a growing network of high-impact partnerships, Elevon helps turn ambitious projects into lasting brands. Whether it’s strategic funding, long-term marketing, or operational support, we give creators the tools they need to grow faster and go further. </p>
           </div>
