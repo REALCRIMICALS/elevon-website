@@ -11,7 +11,7 @@ export default function CurrentUsers() {
     }>(null);
     useEffect(() => {
         (async () => {
-            const res = await fetch("https://www.elevon.gg/api/getstats/1160789089/4661160139/605887098/4202932581/2435789930/2151379579/1720936166/3132040251/3405618667/2150346856/7051852656/4293623433/9600220713/9405919281");
+            const res = await fetch("https://www.elevon.gg/api/getstats/1160789089/4661160139/605887098/4202932581/2435789930/2151379579/1720936166/3132040251/3405618667/2150346856/7051852656/4293623433/9600220713/9405919281/9671940985");
             const dat = await res.json();
             setData(dat as {
                 total_favorited: number,
