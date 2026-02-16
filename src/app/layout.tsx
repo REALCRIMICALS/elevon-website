@@ -3,6 +3,7 @@ import "./globals.css";
 import Image from 'next/image'
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import NotificationsLayer from "@/Components/Notifications";
 
 export const metadata: Metadata = {
@@ -42,6 +43,7 @@ export default function RootLayout({
           </div>
         </nav>
         {children}
+        <SpeedInsights />
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-between bg-gray-950 dark:bg-gray-950 p-4">
           <span className="text-gray-500">© 2026 Elevon. All rights reserved.</span>
           <div className="flex items-center gap-4">
