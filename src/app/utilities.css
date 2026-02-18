@@ -1,0 +1,27 @@
+@utility button {
+    @apply relative rounded-xl px-6 py-2.5 h-fit min-h-9 cursor-pointer font-medium text-sm text-white transition-all duration-300 ease-in-out;
+    background: linear-gradient(135deg, #23719e 0%, #184e6e 100%);
+    border: 1px solid rgba(35, 113, 158, 0.3);
+    box-shadow: 0 0 20px rgba(35, 113, 158, 0.1);
+
+    &:hover {
+        box-shadow: 0 0 30px rgba(35, 113, 158, 0.2);
+        border-color: rgba(35, 113, 158, 0.5);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+@utility button-ghost {
+    @apply relative rounded-xl px-6 py-2.5 h-fit min-h-9 cursor-pointer font-medium text-sm text-white/80 transition-all duration-300 ease-in-out;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+        color: white;
+    }
+}
