@@ -18,8 +18,6 @@ export default function Home() {
       <AnimatedHeader />
       <AnimatedHero />
 
-      {/* The CurrentUsers section was moved into AnimatedHero for better layout flow */}
-
       <section id="about" className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <Fade direction="up" duration={0.5}>

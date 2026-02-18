@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useIntro } from "./intro-loader";
-// Assuming CurrentUsers is located in your app directory
 import CurrentUsers from "../../app/CurrentUsers"; 
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const;
@@ -126,7 +125,7 @@ export function AnimatedHero() {
           </Link>
         </motion.div>
 
-        {/* Current Users Section - Added here with a staggered delay */}
+        {/* Current Users Section */}
         <motion.div
           className="w-full max-w-4xl mt-8 sm:mt-12"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
