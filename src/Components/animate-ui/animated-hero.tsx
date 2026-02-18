@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useIntro } from "./intro-loader";
+// Assuming CurrentUsers is located in your app directory
+import CurrentUsers from "../../app/CurrentUsers"; 
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const;
 
@@ -15,7 +17,7 @@ export function AnimatedHero() {
   const shortDuration = prefersReducedMotion ? 0 : 0.6;
 
   return (
-    <section className="relative h-dvh w-full overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-dvh w-full overflow-hidden flex items-center justify-center py-20">
       {/* Animated background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
@@ -46,7 +48,7 @@ export function AnimatedHero() {
       </div>
 
       {/* Centered animated content */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 px-4 w-full">
         {/* Animated Logo */}
         <motion.div
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -83,7 +85,6 @@ export function AnimatedHero() {
             Elevon
           </motion.h1>
 
-          {/* Animated underline/accent */}
           <motion.div
             className="absolute -bottom-1 sm:-bottom-2 left-1/2 h-0.5 sm:h-1 bg-gradient-to-r from-[#23719e] to-[#184e6e] rounded-full"
             initial={{ width: 0, x: "-50%" }}
@@ -103,10 +104,7 @@ export function AnimatedHero() {
           }
           transition={{ duration: shortDuration, delay: reveal && !prefersReducedMotion ? 0.45 : 0, ease }}
         >
-          Elevating the Next{" "}
-          <span className="bg-gradient-to-r from-[#23719e] to-[#184e6e] bg-clip-text text-transparent font-medium">
-            Generation
-          </span>
+          Elevating the Next Generation of Metaverse Experiences
         </motion.p>
 
         {/* CTA Buttons */}
@@ -126,6 +124,20 @@ export function AnimatedHero() {
           <Link href="#about" className="button-ghost w-full sm:w-auto text-center">
             Learn More
           </Link>
+        </motion.div>
+
+        {/* Current Users Section - Added here with a staggered delay */}
+        <motion.div
+          className="w-full max-w-4xl mt-8 sm:mt-12"
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          animate={
+            reveal
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }
+          }
+          transition={{ duration: shortDuration, delay: reveal && !prefersReducedMotion ? 0.75 : 0, ease }}
+        >
+          <CurrentUsers />
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-import CurrentUsers from "./CurrentUsers";
 import SubmitForm from "./SubmitForm";
 import { Fade } from "@/Components/animate-ui/fade";
 import { AnimatedHero } from "@/Components/animate-ui/animated-hero";
@@ -19,15 +18,7 @@ export default function Home() {
       <AnimatedHeader />
       <AnimatedHero />
 
-      <section className="py-12 px-4">
-        <Fade direction="up" duration={0.6}>
-          <div className="max-w-4xl mx-auto">
-            <CurrentUsers />
-          </div>
-        </Fade>
-      </section>
-
-      <SectionDivider />
+      {/* The CurrentUsers section was moved into AnimatedHero for better layout flow */}
 
       <section id="about" className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -63,7 +54,6 @@ export default function Home() {
             </Fade>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            {/* First card - spans 7 columns */}
             <Fade direction="up" delay={0} duration={0.5} className="md:col-span-7">
               <div className="glass-card rounded-2xl p-6 h-full transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-[#23719e]/10 flex items-center justify-center text-[#23719e] mb-4">
@@ -76,7 +66,6 @@ export default function Home() {
               </div>
             </Fade>
 
-            {/* Second card - spans 5 columns */}
             <Fade direction="up" delay={0.1} duration={0.5} className="md:col-span-5">
               <div className="glass-card rounded-2xl p-6 h-full transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-[#23719e]/10 flex items-center justify-center text-[#23719e] mb-4">
@@ -89,7 +78,6 @@ export default function Home() {
               </div>
             </Fade>
 
-            {/* Third card - spans 5 columns */}
             <Fade direction="up" delay={0.2} duration={0.5} className="md:col-span-5">
               <div className="glass-card rounded-2xl p-6 h-full transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-[#23719e]/10 flex items-center justify-center text-[#23719e] mb-4">
@@ -102,7 +90,6 @@ export default function Home() {
               </div>
             </Fade>
 
-            {/* Fourth card - spans 7 columns */}
             <Fade direction="up" delay={0.3} duration={0.5} className="md:col-span-7">
               <div className="glass-card rounded-2xl p-6 h-full transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-[#23719e]/10 flex items-center justify-center text-[#23719e] mb-4">
