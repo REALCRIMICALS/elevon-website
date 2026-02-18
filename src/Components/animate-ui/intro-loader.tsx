@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import Image from "next/image";
 
@@ -11,7 +11,10 @@ interface IntroContextValue {
   prefersReducedMotion: boolean;
 }
 
-const IntroContext = createContext<IntroContextValue>({ phase: "loading", prefersReducedMotion: false });
+const IntroContext = createContext<IntroContextValue>({ 
+  phase: "loading", 
+  prefersReducedMotion: false 
+});
 
 export function useIntro() {
   return useContext(IntroContext);
@@ -23,106 +26,109 @@ interface IntroLoaderProps {
 
 export function IntroLoader({ children }: IntroLoaderProps) {
   const [phase, setPhase] = useState<IntroPhase>("loading");
+  const [isMounted, setIsMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
-    // Skip animation entirely if user prefers reduced motion
+    setIsMounted(true);
+    
     if (prefersReducedMotion) {
       setPhase("complete");
       return;
     }
+
+    const isMobile = window.innerWidth < 768;
     
-    // Shorter timings for mobile to prevent perceived lag
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const loadingDuration = isMobile ? 800 : 1200;
-    const completeDuration = isMobile ? 1600 : 2400;
-    
-    // Logo holds at center, then start revealing page content
-    const t1 = setTimeout(() => setPhase("revealing"), loadingDuration);
-    // Overlay fully gone after animations settle
-    const t2 = setTimeout(() => setPhase("complete"), completeDuration);
+    const revealDelay = isMobile ? 700 : 1000;
+    const completionDelay = isMobile ? 1400 : 2000;
+
+    const t1 = setTimeout(() => setPhase("revealing"), revealDelay);
+    const t2 = setTimeout(() => setPhase("complete"), completionDelay);
+
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
   }, [prefersReducedMotion]);
 
+  if (!isMounted) {
+    return (
+      <div className="fixed inset-0 bg-black flex items-center justify-center">
+        <Image
+          src="/elevon-transparent.svg"
+          width={60}
+          height={60}
+          alt="loading"
+          className="opacity-20"
+        />
+      </div>
+    );
+  }
+
   return (
     <IntroContext.Provider value={{ phase, prefersReducedMotion }}>
-      {/* Page content — always in DOM, each element controls its own reveal via useIntro */}
-      {children}
-
-      {/* Overlay — sits on top, dissolves to reveal content underneath */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {phase !== "complete" && (
           <motion.div
-            className="fixed inset-0 z-[100] pointer-events-none"
-            exit={{ opacity: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+            key="loader"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black"
+            style={{ willChange: "opacity, transform" }}
+            initial={{ opacity: 1 }}
+            exit={{ 
+              opacity: 0,
+              transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }
+            }}
           >
-            {/* Black background — fades during reveal */}
-            <motion.div
-              className="absolute inset-0 bg-black"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: phase === "revealing" ? 0 : 1 }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.6,
-                delay: phase === "revealing" && !prefersReducedMotion ? 0.1 : 0,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-            />
-
-            {/* Centered logo + name */}
-            <div className="absolute inset-0 flex items-center justify-center px-4">
+            <div className="flex flex-col items-center gap-4">
               <motion.div
-                className="flex flex-col items-center gap-2 sm:gap-3"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={
-                  phase === "loading"
-                    ? { opacity: 1, scale: 1, y: 0 }
-                    : { opacity: 0, scale: 0.96, y: -20 }
-                }
+                initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                style={{ willChange: "transform, opacity" }}
                 transition={{
-                  duration: prefersReducedMotion ? 0 : (phase === "loading" ? 0.5 : 0.4),
+                  duration: 0.6,
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}
               >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: prefersReducedMotion ? 0 : 0.4,
-                    delay: prefersReducedMotion ? 0 : 0.1,
-                    ease: [0.21, 0.47, 0.32, 0.98],
-                  }}
-                >
-                  <Image
-                    src="/elevon-transparent.svg"
-                    width={120}
-                    height={120}
-                    quality={100}
-                    alt="elevon logo"
-                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
-                    priority
-                  />
-                </motion.div>
-                <motion.span
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: prefersReducedMotion ? 0 : 0.4,
-                    delay: prefersReducedMotion ? 0 : 0.2,
-                    ease: [0.21, 0.47, 0.32, 0.98],
-                  }}
-                >
-                  Elevon
-                </motion.span>
+                <Image
+                  src="/elevon-transparent.svg"
+                  width={120}
+                  height={120}
+                  quality={100}
+                  alt="elevon logo"
+                  className="w-16 h-16 sm:w-20 sm:h-20"
+                  priority
+                />
               </motion.div>
+              
+              <motion.span
+                className="text-2xl font-bold tracking-tight text-white"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                Elevon
+              </motion.span>
             </div>
+
+            <motion.div 
+              className="absolute bottom-0 left-0 h-[2px] bg-[#23719e]"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {
+       }
+      <div 
+        className={`transition-opacity duration-1000 ${
+          phase === "loading" ? "opacity-0 invisible h-screen overflow-hidden" : "opacity-100 visible"
+        }`}
+      >
+        {children}
+      </div>
     </IntroContext.Provider>
   );
 }

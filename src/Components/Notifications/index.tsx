@@ -69,7 +69,6 @@ export default function NotificationsLayer() {
             Dispatcher.removeListener("OPEN_NOTIFICATION", openNotification);
             Dispatcher.removeListener("CLOSE_NOTIFICATION", closeNotif);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div

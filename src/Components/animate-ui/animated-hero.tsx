@@ -17,7 +17,6 @@ export function AnimatedHero() {
 
   return (
     <section className="relative min-h-dvh w-full overflow-hidden flex items-center justify-center py-20">
-      {/* Animated background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
           className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-[#23719e]/[0.06] blur-[120px]"
@@ -46,9 +45,7 @@ export function AnimatedHero() {
         />
       </div>
 
-      {/* Centered animated content */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 px-4 w-full">
-        {/* Animated Logo */}
         <motion.div
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           animate={
@@ -69,7 +66,6 @@ export function AnimatedHero() {
           />
         </motion.div>
 
-        {/* Animated Title */}
         <div className="relative">
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-center"
@@ -92,7 +88,6 @@ export function AnimatedHero() {
           />
         </div>
 
-        {/* Tagline */}
         <motion.p
           className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-400 font-light tracking-wide text-center max-w-xs sm:max-w-md"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
@@ -106,7 +101,6 @@ export function AnimatedHero() {
           Elevating the Next Generation of Metaverse Experiences
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-2 sm:mt-4 w-full sm:w-auto"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
@@ -125,7 +119,6 @@ export function AnimatedHero() {
           </Link>
         </motion.div>
 
-        {/* Current Users Section */}
         <motion.div
           className="w-full max-w-4xl mt-8 sm:mt-12"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}

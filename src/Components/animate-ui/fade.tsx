@@ -35,7 +35,6 @@ export function Fade({
   amount = 0.3,
 }: FadeProps) {
   const ref = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isInView = useInView(ref, { once, margin: margin as any, amount });
   const offset = directionOffsets[direction];
 

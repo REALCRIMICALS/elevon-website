@@ -32,7 +32,6 @@ export function SplittingText({
   const items = splitBy === "chars" ? text.split("") : text.split(" ");
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <Tag ref={ref as any} className={cn("inline-flex flex-wrap", className)}>
       {items.map((item, i) => (
         <motion.span
