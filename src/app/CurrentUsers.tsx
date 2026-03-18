@@ -17,7 +17,7 @@ export default function CurrentUsers() {
         total_visits: number
     }>(null);
 
-    const socialViews = 700000000;
+    const socialViews = 1000000000;
     const views = formatStat(socialViews);
 
     useEffect(() => {
